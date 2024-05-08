@@ -5,7 +5,7 @@ public enum MotorType {
     NORMAL(1),
     BEST(2);
 
-    private int i;
+    private final int i;
     MotorType(int i) {
         this.i = i;
     }

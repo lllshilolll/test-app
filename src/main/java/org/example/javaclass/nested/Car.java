@@ -1,16 +1,14 @@
 package org.example.javaclass.nested;
 
 import lombok.Data;
-import lombok.ToString;
 
 import static org.example.javaclass.nested.Car.StatisticOfCar.countCar;
 
 @Data
 public class Car {
-    private static int prStOuterVar;
-    private String name;
-    private Wheel wheel;
-    private MotorType motorType;
+    private final String name;
+    private final Wheel wheel;
+    private final MotorType motorType;
 
     {
         wheel = new Wheel();
@@ -24,7 +22,7 @@ public class Car {
 
     //внутренний нестатический класс - доступ в рамках внешнего класса
     private class Motor {
-        private int id;
+        private final int id;
 
         public Motor(int id) {
             this.id = id;
