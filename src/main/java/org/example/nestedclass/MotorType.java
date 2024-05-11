@@ -1,4 +1,4 @@
-package org.example.javaclass.nested;
+package org.example.nestedclass;
 
 public enum MotorType {
     BED(0),

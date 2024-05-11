@@ -1,7 +1,4 @@
-package org.example;
-
-import org.example.javaclass.nested.Car;
-import org.example.javaclass.nested.MotorType;
+package org.example.nestedclass;
 
 public class Main {
     public static void main(String[] args) {

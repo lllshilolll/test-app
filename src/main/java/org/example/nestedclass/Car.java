@@ -1,8 +1,8 @@
-package org.example.javaclass.nested;
+package org.example.nestedclass;
 
 import lombok.Data;
 
-import static org.example.javaclass.nested.Car.StatisticOfCar.countCar;
+import static org.example.nestedclass.Car.StatisticOfCar.countCar;
 
 @Data
 public class Car {
