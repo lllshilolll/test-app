@@ -1,8 +1,8 @@
-package org.example.finalmodifier;
+package org.example.finaltest;
 
 import java.util.*;
 
-import static org.example.finalmodifier.Animal.countAnimals;
+import static org.example.finaltest.Animal.countAnimals;
 
 
 public class Enclosures extends Zoo {
@@ -39,9 +39,12 @@ public class Enclosures extends Zoo {
             //у final-объектов нельзя поменять ссылку на объект
             // animalName = new String[2];
             switch (animal.getSizeAnimal()) {
-                case SMALL -> smallEnclosure.add(animal);
-                case MEDIUM -> mediumEnclosure.add(animal);
-                case BIG -> bigEnclosure.add(animal);
+                case SMALL:
+                    smallEnclosure.add(animal);
+                case MEDIUM:
+                    mediumEnclosure.add(animal);
+                case BIG:
+                    bigEnclosure.add(animal);
             }
         } catch (Exception e) {
             System.out.println("мест нет, животное " + animal.getName() + " добавлено в очередь");

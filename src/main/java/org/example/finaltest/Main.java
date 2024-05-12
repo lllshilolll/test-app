@@ -1,7 +1,7 @@
-package org.example.finalmodifier;
+package org.example.finaltest;
 
 
-import static org.example.finalmodifier.Animal.countAnimals;
+import static org.example.finaltest.Animal.countAnimals;
 
 public class Main {
     public static void main(String[] args) {

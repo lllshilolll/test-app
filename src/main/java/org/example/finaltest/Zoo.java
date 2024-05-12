@@ -1,4 +1,4 @@
-package org.example.finalmodifier;
+package org.example.finaltest;
 
 public class Zoo {
 
