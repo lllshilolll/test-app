@@ -7,30 +7,56 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @Component
 public class AnimalDao {
 
-    //    @Autowired
     private final DataSource dataSource;
 
     public AnimalDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public void findById(String id) {
+    public AnimalDBPOJO findById(String id) {
+        AnimalDBPOJO result = new AnimalDBPOJO();
         try (Connection connection = dataSource.getConnection()) {
             Statement selectStatement = connection.createStatement();
             ResultSet resultSet = selectStatement.executeQuery("select * from public.animals where id = '" + id + "'");
             while (resultSet.next()) {
+                result.setId(resultSet.getString("id"));
+                result.setAge(resultSet.getInt("age"));
+                result.setSizeAnimal(SizeAnimal.valueOf(resultSet.getString("size_animal")));
+                result.setName(resultSet.getString("name"));
                 System.out.println(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            e.getStackTrace();
+            log.error("SQLException:", e);
         }
+        return result;
+    }
 
+    public List<AnimalDBPOJO> findAll() {
+        List<AnimalDBPOJO> animalDBPOJOS = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection()) {
+            Statement selectStatement = connection.createStatement();
+            ResultSet resultSet = selectStatement.executeQuery("select * from public.animals");
+            while (resultSet.next()) {
+                AnimalDBPOJO result = new AnimalDBPOJO();
+
+                result.setId(resultSet.getString("id"));
+                result.setAge(resultSet.getInt("age"));
+                result.setSizeAnimal(SizeAnimal.valueOf(resultSet.getString("size_animal")));
+                result.setName(resultSet.getString("name"));
+                animalDBPOJOS.add(result);
+            }
+        } catch (SQLException e) {
+            log.error("SQLException:", e);
+        }
+        return animalDBPOJOS;
     }
 
     public void findBySizeAnimal(SizeAnimal sizeAnimal) {
@@ -41,13 +67,12 @@ public class AnimalDao {
                 System.out.println(resultSet.getString(3));
             }
         } catch (SQLException e) {
-            e.getStackTrace();
+            log.error("SQLException:", e);
         }
 
     }
 
     public void createAnimal(AnimalDBPOJO animal) {
-//        UUID uuid = UUID.randomUUID();
         try (Connection connection = dataSource.getConnection()) {
             Statement selectStatement = connection.createStatement();
             selectStatement.executeUpdate("INSERT INTO PUBLIC.ANIMALS" +
@@ -56,8 +81,6 @@ public class AnimalDao {
         } catch (SQLException e) {
             log.error("SQLException:", e);
         }
-//        return animal;
-
     }
 //
 //    public Connection newDataSource() throws ClassNotFoundException, SQLException {

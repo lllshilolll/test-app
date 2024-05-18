@@ -18,3 +18,13 @@ Content-Type: application/json
   "age": 1,
   "sizeAnimal": "MEDIUM"
 }
+
+###
+GET http://localhost:8080/json/animal?id=a02c8b6a-03a2-41b7-8b86-a87e19f81fea
+Accept: application/json
+Content-Type: application/json
+
+###
+GET http://localhost:8080/json/animal/list
+Accept: application/json
+Content-Type: application/json
