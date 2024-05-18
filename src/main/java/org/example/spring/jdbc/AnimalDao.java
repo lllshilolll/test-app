@@ -46,16 +46,17 @@ public class AnimalDao {
 
     }
 
-    public String createAnimal(Animal animal) {
-        UUID uuid = UUID.randomUUID();
+    public void createAnimal(AnimalDBPOJO animal) {
+//        UUID uuid = UUID.randomUUID();
         try (Connection connection = dataSource.getConnection()) {
             Statement selectStatement = connection.createStatement();
             selectStatement.executeUpdate("INSERT INTO PUBLIC.ANIMALS" +
                     "(NAME, AGE, SIZE_ANIMAL, ID)" +
-                    "VALUES('" + animal.getName() + "', " + animal.getAge() + ", '" + animal.getSizeAnimal() + "', '" + uuid + "');");
+                    "VALUES('" + animal.getName() + "', " + animal.getAge() + ", '" + animal.getSizeAnimal() + "', '" + animal.getId() + "');");
         } catch (SQLException e) {
-            log.error("SQLException:", e);}
-        return uuid.toString();
+            log.error("SQLException:", e);
+        }
+//        return animal;
 
     }
 //
