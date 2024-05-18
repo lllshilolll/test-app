@@ -1,0 +1,11 @@
+POST http://localhost:8080/animal/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Liluiui",
+  "age": 1,
+  "sizeAnimal": "MEDIUM"
+}
+
+###
