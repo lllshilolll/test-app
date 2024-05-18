@@ -1,7 +1,7 @@
 package org.example.spring.jdbc;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.spring.model.Animal;
+import org.example.spring.aspects.AspectAnnotation;
 import org.example.spring.testing.finaltest.SizeAnimal;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,6 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Component
@@ -21,6 +20,7 @@ public class AnimalDao {
         this.dataSource = dataSource;
     }
 
+    @AspectAnnotation
     public AnimalDBPOJO findById(String id) {
         AnimalDBPOJO result = new AnimalDBPOJO();
         try (Connection connection = dataSource.getConnection()) {

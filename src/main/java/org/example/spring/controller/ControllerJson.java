@@ -20,7 +20,6 @@ public class ControllerJson {
     private final AnimalDao animalDao;
     private final AnimalMapper animalMapper;
 
-
     @PostMapping(value = "json/animal/create")
     public ResponseCreateAnimal createAnimal(@RequestBody Animal animal) {
         AnimalDBPOJO animalDBPOJO = animalMapper.convertToAnimalDBPOJO(animal);
