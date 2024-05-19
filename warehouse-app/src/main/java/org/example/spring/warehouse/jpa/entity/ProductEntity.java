@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "products")
 @Data
-public class Product {
+public class ProductEntity {
     @Id
     private String id;
 
@@ -17,15 +17,11 @@ public class Product {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="producer_id", nullable=false)
+    @JoinColumn(name = "producer_id", nullable = false)
     private User productProducer;
 
-//    @ManyToOne
-//    @JoinColumn(name="product_id", nullable=false)
-//    @Column(name = "consumer_id")
-//    private User productConsumer;
-
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "warehouses_id", nullable = true)
     private Warehouse warehouses;
 
 }

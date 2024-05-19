@@ -7,12 +7,10 @@ CREATE TABLE products
     uniq_number_product varchar(50)  not null,
     name                varchar(100) not null,
     producer_id         varchar(50)  not null,
---     consumer_id         varchar(50),
     warehouse_id        varchar(50),
 
     PRIMARY KEY (id),
     foreign key (producer_id) REFERENCES users (userId),
---     foreign key (consumer_id) REFERENCES users (userId),
     foreign key (warehouse_id) REFERENCES warehouses (warehouse_id)
 
 );
@@ -36,6 +34,21 @@ CREATE TABLE warehouses
     city         varchar(50)  not null,
     size         int          not null,
     phoneNumber  varchar(20)  not null,
+    owner_id varchar(50)  not null,
 
-    PRIMARY KEY (warehouse_id)
+    PRIMARY KEY (warehouse_id),
+    foreign key (owner_id) REFERENCES owners (owner_id)
+
 );
+
+
+-- changeset create_table_owners
+CREATE TABLE owners
+(
+    owner_id varchar(50)  not null,
+    name varchar(50)  not null,
+    phoneNumber  varchar(20)  not null,
+
+    PRIMARY KEY (owner_id)
+);
+

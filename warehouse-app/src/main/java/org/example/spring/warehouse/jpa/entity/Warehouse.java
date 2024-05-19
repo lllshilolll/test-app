@@ -3,10 +3,8 @@ package org.example.spring.warehouse.jpa.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "warehouses")
@@ -19,6 +17,13 @@ public class Warehouse {
     private String country;
     private Integer size;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "warehouses")
+    private List<ProductEntity> productEntities;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private Owner owner;
 
 
 }

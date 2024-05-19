@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>zoo</module>
+        <module>warehouse-api</module>
         <module>warehouse-app</module>
     </modules>
     <parent>

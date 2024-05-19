@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Warehouse Service 1.0
+  version: 0.0.1
+tags:
+  - name: Warehouse Service
+    description: Warehouse internal APIs
+
+paths:
+  /owner/products:
+    get:
+      tags:
+        - Warehouse Service
+      operationId: get-owner-products
+      parameters:
+        - $ref: "#/components/parameters/OwnerId"
+        - $ref: "#/components/parameters/WarehouseId"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOwnerProductsResponse'
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Error
+        '403':
+          description: Signature error
+        '500':
+          description: Internal Server Error
+components:
+  parameters:
+    OwnerId:
+      name: OwnerId
+      in: header
+      required: true
+      description: "Owner Id"
+      schema:
+        maxLength: 50
+        type: string
+    WarehouseId:
+      name: WarehouseId
+      in: header
+      required: true
+      description: "Warehouse Id"
+      schema:
+        maxLength: 50
+        type: string
+
+  schemas:
+    Product:
+      type: object
+      required:
+        - uniqProductId
+        - name
+        - warehouseId
+      description: "Информация о продукте"
+      properties:
+        uniqProductId:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 100
+        warehouseId:
+          type: string
+          maxLength: 50
+        producerId:
+          type: string
+          maxLength: 50
+
+    CreditorIdentification:
+      type: object
+      required:
+        - switchId
+      properties:
+        switchId:
+          $ref: '#/components/schemas/SwitchId'
+
+    SwitchId:
+      type: object
+      required:
+        - number
+        - type
+      properties:
+        number:
+          type: string
+          example: '0079991234567'
+        type:
+          type: string
+          example: 'PHONE'
+
+    Otp:
+      type: string
+      example: 'sha256hash'
+
+    GetOwnerProductsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
+
+    TransactionId:
+      type: string
+      example: '1239842398423'
+
+    GetDefaultBankResponse:
+      type: object
+      required:
+        - defaultMemberId
+      properties:
+        defaultMemberId:
+          $ref: '#/components/schemas/DefaultMemberId'
+
+    DefaultMemberId:
+      type: string
+      example: '1239842398423'
+      description: 'Идентификатор участника устанавливаемый по умолчанию'

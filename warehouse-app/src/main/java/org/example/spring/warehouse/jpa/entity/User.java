@@ -17,11 +17,7 @@ public class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    //связь без поля
     @OneToMany(mappedBy = "productProducer")
-    private List<Product> productsProducer;
-
-//    @OneToMany(mappedBy = "productConsumer")
-//    private List<Product> productsConsumer;
+    private List<ProductEntity> productsProducer;
 
 }
