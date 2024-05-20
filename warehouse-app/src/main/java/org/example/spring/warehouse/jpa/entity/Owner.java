@@ -18,6 +18,6 @@ public class Owner {
     private String name;
 
     @OneToMany(mappedBy = "owner")
-    private List<Warehouse> warehouses;
+    private List<WarehouseEntity> warehouseEntities;
 
 }

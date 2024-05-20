@@ -7,6 +7,31 @@ tags:
     description: Warehouse internal APIs
 
 paths:
+  /owner/user:
+    post:
+      tags:
+        - Warehouse Service
+      operationId: create-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserId'
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Error
+        '403':
+          description: Signature error
+        '500':
+          description: Internal Server Error
   /owner/products:
     get:
       tags:
@@ -20,7 +45,71 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetOwnerProductsResponse'
+                $ref: '#/components/schemas/GetProductsResponse'
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Error
+        '403':
+          description: Signature error
+        '500':
+          description: Internal Server Error
+  /user/products:
+    get:
+      tags:
+        - Warehouse Service
+      operationId: get-user-products
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductsResponse'
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Error
+        '403':
+          description: Signature error
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - Warehouse Service
+      operationId: create-user-products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserProductsRequest"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductId'
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Error
+        '403':
+          description: Signature error
+        '500':
+          description: Internal Server Error
+  /warehouse:
+    get:
+      tags:
+        - Warehouse Service
+      operationId: get-list-warehouse
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseResponse'
           description: OK
         '400':
           description: Bad Request
@@ -32,6 +121,14 @@ paths:
           description: Internal Server Error
 components:
   parameters:
+    UserId:
+      name: UserId
+      in: query
+      required: true
+      description: "User Id"
+      schema:
+        maxLength: 50
+        type: string
     OwnerId:
       name: OwnerId
       in: header
@@ -50,6 +147,70 @@ components:
         type: string
 
   schemas:
+    CreateUserRequest:
+      type: object
+      required:
+        - name
+        - phoneNumber
+        - password
+      description: "Информация о продукте"
+      properties:
+        password:
+          type: string
+          maxLength: 100
+        name:
+          type: string
+          maxLength: 100
+        phoneNumber:
+          type: string
+          maxLength: 20
+        role:
+          type: string
+          maxLength: 50
+    SetProductInWarehouseRequest:
+      type: object
+      required:
+        - productId
+        - warehouseId
+      description: "Информация о продукте"
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        warehouseId:
+          type: string
+          maxLength: 50
+    CreateUserProductsRequest:
+      type: object
+      required:
+        - uniqProductId
+        - userId
+        - name
+      description: "Информация о продукте"
+      properties:
+        userId:
+          type: string
+          maxLength: 50
+        uniqProductId:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 100
+        warehouseId:
+          type: string
+          maxLength: 50
+    UserId:
+      type: string
+      maxLength: 50
+      description: "ProductId"
+    ProductId:
+      type: string
+      maxLength: 50
+      description: "ProductId"
+    GetProductsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
     Product:
       type: object
       required:
@@ -70,50 +231,26 @@ components:
         producerId:
           type: string
           maxLength: 50
-
-    CreditorIdentification:
-      type: object
-      required:
-        - switchId
-      properties:
-        switchId:
-          $ref: '#/components/schemas/SwitchId'
-
-    SwitchId:
-      type: object
-      required:
-        - number
-        - type
-      properties:
-        number:
-          type: string
-          example: '0079991234567'
-        type:
-          type: string
-          example: 'PHONE'
-
-    Otp:
-      type: string
-      example: 'sha256hash'
-
-    GetOwnerProductsResponse:
+    WarehouseResponse:
       type: array
       items:
-        $ref: '#/components/schemas/Product'
-
-    TransactionId:
-      type: string
-      example: '1239842398423'
-
-    GetDefaultBankResponse:
+        $ref: '#/components/schemas/Warehouse'
+    Warehouse:
       type: object
-      required:
-        - defaultMemberId
+      description: "Информация о складах"
       properties:
-        defaultMemberId:
-          $ref: '#/components/schemas/DefaultMemberId'
-
-    DefaultMemberId:
-      type: string
-      example: '1239842398423'
-      description: 'Идентификатор участника устанавливаемый по умолчанию'
+        country:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 50
+        size:
+          type: integer
+          maxLength: 50
+        phoneNumber:
+          type: string
+          maxLength: 20
+        ownerId:
+          type: string
+          maxLength: 20

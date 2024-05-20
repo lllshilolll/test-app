@@ -11,7 +11,7 @@ CREATE TABLE products
 
     PRIMARY KEY (id),
     foreign key (producer_id) REFERENCES users (userId),
-    foreign key (warehouse_id) REFERENCES warehouses (warehouse_id)
+    foreign key (warehouse_id) REFERENCES warehouseEntities (warehouse_id)
 
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE users
 );
 
 -- changeset create_table_warehouses
-CREATE TABLE warehouses
+CREATE TABLE warehouseEntities
 (
     warehouse_id varchar(50)  not null,
     country      varchar(100) not null,
@@ -51,4 +51,16 @@ CREATE TABLE owners
 
     PRIMARY KEY (owner_id)
 );
+-- changeset create_column
+ALTER TABLE users
+    add column name varchar(50);
+
+-- changeset create_column_users
+ALTER TABLE users
+    add column password varchar(200);
+
+-- changeset create_constrain_users_name
+ALTER TABLE users
+    ADD UNIQUE (name);
+
 

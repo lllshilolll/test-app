@@ -16,6 +16,8 @@ public class User {
     private String role;
     @Column(name = "phone_number")
     private String phoneNumber;
+    private String name;
+    private String password;
 
     @OneToMany(mappedBy = "productProducer")
     private List<ProductEntity> productsProducer;

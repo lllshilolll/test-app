@@ -22,6 +22,6 @@ public class ProductEntity {
 
     @ManyToOne
     @JoinColumn(name = "warehouses_id", nullable = true)
-    private Warehouse warehouses;
+    private WarehouseEntity warehouses;
 
 }

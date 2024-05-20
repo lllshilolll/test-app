@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "warehouses")
 @Data
-public class Warehouse {
+public class WarehouseEntity {
     @Id
     @Column(name = "warehouse_id")
     private String warehouseId;
