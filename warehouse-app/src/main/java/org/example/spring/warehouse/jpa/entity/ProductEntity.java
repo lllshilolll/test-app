@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Data
 public class ProductEntity {
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private String id;
 
     @Column(name = "uniq_number_product")

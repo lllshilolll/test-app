@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 public class Owner {
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Column(name = "owner_id")
     private String ownerId;
     @Column(name = "phone_number")

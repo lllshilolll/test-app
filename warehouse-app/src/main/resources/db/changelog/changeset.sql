@@ -1,33 +1,17 @@
--- liquibase formatted sql
+--liquibase formatted sql
 
--- changeset create_table_products
-CREATE TABLE products
+--changeset Baranova:create_table_owners
+CREATE TABLE owners
 (
-    id                  varchar(50)  not null,
-    uniq_number_product varchar(50)  not null,
-    name                varchar(100) not null,
-    producer_id         varchar(50)  not null,
-    warehouse_id        varchar(50),
+    owner_id varchar(50)  not null,
+    name varchar(50)  not null,
+    phoneNumber  varchar(20)  not null,
 
-    PRIMARY KEY (id),
-    foreign key (producer_id) REFERENCES users (userId),
-    foreign key (warehouse_id) REFERENCES warehouseEntities (warehouse_id)
-
+    PRIMARY KEY (owner_id)
 );
 
--- changeset create_table_users
-
-CREATE TABLE users
-(
-    userId       varchar(50) not null,
-    role         varchar(50) not null,
-    phone_number varchar(20) not null,
-
-    PRIMARY KEY (userId)
-);
-
--- changeset create_table_warehouses
-CREATE TABLE warehouseEntities
+--changeset Baranova:create_table_warehouses
+CREATE TABLE warehouses
 (
     warehouse_id varchar(50)  not null,
     country      varchar(100) not null,
@@ -41,25 +25,40 @@ CREATE TABLE warehouseEntities
 
 );
 
-
--- changeset create_table_owners
-CREATE TABLE owners
+--changeset Baranova:create_table_users
+CREATE TABLE users
 (
-    owner_id varchar(50)  not null,
-    name varchar(50)  not null,
-    phoneNumber  varchar(20)  not null,
+    userId       varchar(50) not null,
+    role         varchar(50) not null,
+    phone_number varchar(20) not null,
 
-    PRIMARY KEY (owner_id)
+    PRIMARY KEY (userId)
 );
--- changeset create_column
+
+--changeset Baranova:create_table_products
+CREATE TABLE products
+(
+    id                  varchar(50)  not null,
+    uniq_number_product varchar(50)  not null,
+    name                varchar(100) not null,
+    producer_id         varchar(50)  not null,
+    warehouse_id        varchar(50),
+
+    PRIMARY KEY (id),
+    foreign key (producer_id) REFERENCES users (userId),
+    foreign key (warehouse_id) REFERENCES warehouses (warehouse_id)
+
+);
+
+--changeset Baranova:create_column
 ALTER TABLE users
     add column name varchar(50);
 
--- changeset create_column_users
+--changeset Baranova:create_column_users
 ALTER TABLE users
     add column password varchar(200);
 
--- changeset create_constrain_users_name
+--changeset Baranova:create_constrain_users_name
 ALTER TABLE users
     ADD UNIQUE (name);
 

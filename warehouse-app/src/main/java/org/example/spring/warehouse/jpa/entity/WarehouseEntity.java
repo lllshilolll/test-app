@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 public class WarehouseEntity {
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Column(name = "warehouse_id")
     private String warehouseId;
     private String city;
