@@ -12,6 +12,7 @@
         <module>zoo</module>
         <module>warehouse-api</module>
         <module>warehouse-app</module>
+        <module>test-cloud</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

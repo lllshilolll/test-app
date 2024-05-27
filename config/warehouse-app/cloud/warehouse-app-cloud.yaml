@@ -1,18 +1,8 @@
 spring:
-  application:
-    name: warehouse-app
-  profiles:
-    active: cloud
-  #  security:
-#    oauth2:
-#      client:
-#        registration:
-#          github:
-#            client-id:
-#            client-secret:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://172.18.0.2:5432/test_app
+#    url: jdbc:postgresql://172.18.0.2:5432/test_app
+    url: jdbc:postgresql://0.0.0.0:5432/test_app
     username: postgres_admin
     password: postgres_admin
     hikari:
@@ -20,7 +10,8 @@ spring:
   liquibase:
     user: postgres_admin
     password: postgres_admin
-    url: jdbc:postgresql://172.18.0.2:5432/test_app
+#    url: jdbc:postgresql://172.18.0.2:5432/test_app
+    url: jdbc:postgresql://0.0.0.0:5432/test_app
     change-log: classpath:db/changelog/db.changelog-master.yaml
     default-schema: public
     driver-class-name: org.postgresql.Driver

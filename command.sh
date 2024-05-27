@@ -10,7 +10,7 @@ docker network connect app_net postges_1-13.3
 docker network connect app_net quizzical_galileo
 
 #run container with delete and fon
-docker run --rm -d \
+docker run -d \
   --name postgresqldb \
   -p 5432:5432 \
   -e POSTGRES_PASSWORD=postgres_admin \

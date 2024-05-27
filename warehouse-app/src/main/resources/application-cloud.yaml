@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: warehouse-app
+  config:
+    import: 'configserver:http://localhost:8888'
+    activate:
+      on-profile: cloud
+  cloud:
+    config:
+      fail-fast: true
+
+

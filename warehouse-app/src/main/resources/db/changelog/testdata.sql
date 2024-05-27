@@ -11,7 +11,7 @@ insert into owners (owner_id, name, phonenumber)
 values ('6491758e-c56b-487b-8477-8e33b9957ce9', 'Boss', '8-999-222-000');
 
 --changeset Baranova:inset_warehouses
-insert into warehouses (warehouse_id, city, country, phonenumber, "size", owner_id)
+insert into warehouses (warehouse_id, city, country, phonenumber, size, owner_id)
 values ('08b1239b-4e7d-423a-a046-0c6ef5dfbedf', 'Moscow', 'Russia', '8-999-000-111', '12',
         '6491758e-c56b-487b-8477-8e33b9957ce9');
 
