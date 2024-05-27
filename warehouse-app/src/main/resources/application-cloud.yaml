@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: warehouse-app
+  config:
+    import: 'configserver:http://localhost:8888'
+    activate:
+      on-profile: cloud
+  cloud:
+    config:
+      fail-fast: true
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

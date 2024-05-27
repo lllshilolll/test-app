@@ -1,0 +1,69 @@
+
+###
+GET http://localhost:8080/user/products?UserId=63ad2208-a857-47ee-8d2f-686cc984de29
+Accept: application/json
+
+###9ebeae18-8755-4aba-9a96-d3d0ec98fc54
+POST http://localhost:8080/user/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": "63ad2208-a857-47ee-8d2f-686cc984de29",
+  "uniqProductId": "484884848",
+  "name": "product1",
+  "warehouseId": "5432"
+}
+
+###a50e3b44-3ad0-447b-aa64-376fa0628552
+POST http://localhost:8080/owner/user
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "user2",
+  "phoneNumber": "123456",
+  "role": "user",
+  "password": "123"
+}
+
+###
+GET http://localhost:8080/owner/products
+Accept: application/json
+Content-Type: application/json
+OwnerId: 123
+WarehouseId: 5432
+
+
+
+###
+POST http://localhost:8080/view/animal/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Liluiui",
+  "age": 1,
+  "sizeAnimal": "MEDIUM"
+}
+
+###
+POST http://localhost:8080/json/animal/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Liluiui",
+  "age": 1,
+  "sizeAnimal": "MEDIUM"
+}
+
+###
+GET http://localhost:8080/json/animal?id=a02c8b6a-03a2-41b7-8b86-a87e19f81fea
+Accept: application/json
+Content-Type: application/json
+
+###
+GET http://localhost:8080/json/animal/list
+Accept: application/json
+Content-Type: application/json
