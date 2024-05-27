@@ -197,6 +197,7 @@ components:
           type: string
           maxLength: 100
         warehouseId:
+          nullable: true
           type: string
           maxLength: 50
     UserId:

@@ -11,12 +11,13 @@ import java.util.List;
 @Data
 public class WarehouseEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "warehouse_id")
     private String warehouseId;
     private String city;
     private String country;
     private Integer size;
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "warehouses")

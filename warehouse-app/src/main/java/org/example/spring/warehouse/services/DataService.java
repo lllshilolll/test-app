@@ -52,9 +52,11 @@ public class DataService {
         String productId = UUID.randomUUID().toString();
         ProductEntity product = mapper.convertToProductEntity(createUserProductsRequest, productId);
         Optional<User> user = userRepository.findById(createUserProductsRequest.getUserId());
-        Optional<WarehouseEntity> warehouse = warehouseRepository.findById(createUserProductsRequest.getWarehouseId());
         user.ifPresent(product::setProductProducer);
-        warehouse.ifPresent(product::setWarehouses);
+        if (createUserProductsRequest.getWarehouseId().isPresent()) {
+            Optional<WarehouseEntity> warehouse = warehouseRepository.findById(createUserProductsRequest.getWarehouseId().get());
+            warehouse.ifPresent(product::setWarehouses);
+        }
         return productRepository.save(product).getId();
     }
 

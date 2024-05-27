@@ -5,7 +5,7 @@ CREATE TABLE owners
 (
     owner_id varchar(50)  not null,
     name varchar(50)  not null,
-    phoneNumber  varchar(20)  not null,
+    phone_number  varchar(20)  not null,
 
     PRIMARY KEY (owner_id)
 );
@@ -17,7 +17,7 @@ CREATE TABLE warehouses
     country      varchar(100) not null,
     city         varchar(50)  not null,
     size         int          not null,
-    phoneNumber  varchar(20)  not null,
+    phone_number  varchar(20)  not null,
     owner_id varchar(50)  not null,
 
     PRIMARY KEY (warehouse_id),
@@ -28,11 +28,11 @@ CREATE TABLE warehouses
 --changeset Baranova:create_table_users
 CREATE TABLE users
 (
-    userId       varchar(50) not null,
+    user_id       varchar(50) not null,
     role         varchar(50) not null,
     phone_number varchar(20) not null,
 
-    PRIMARY KEY (userId)
+    PRIMARY KEY (user_id)
 );
 
 --changeset Baranova:create_table_products
@@ -45,7 +45,7 @@ CREATE TABLE products
     warehouse_id        varchar(50),
 
     PRIMARY KEY (id),
-    foreign key (producer_id) REFERENCES users (userId),
+    foreign key (producer_id) REFERENCES users (user_id),
     foreign key (warehouse_id) REFERENCES warehouses (warehouse_id)
 
 );

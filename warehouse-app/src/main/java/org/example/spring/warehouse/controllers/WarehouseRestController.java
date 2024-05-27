@@ -1,5 +1,6 @@
 package org.example.spring.warehouse.controllers;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.example.api.WarehouseApi;
 import org.example.api.model.Warehouse;
@@ -15,6 +16,7 @@ public class WarehouseRestController implements WarehouseApi {
 
     private final DataService dataService;
 
+    @Timed("getListWarehouse")
     @Override
     public ResponseEntity<List<Warehouse>> getListWarehouse() {
         return ResponseEntity.ok(dataService.getListWarehouse());

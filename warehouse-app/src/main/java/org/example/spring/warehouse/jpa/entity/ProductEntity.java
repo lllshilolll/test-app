@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 public class ProductEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(name = "uniq_number_product")
@@ -22,7 +22,7 @@ public class ProductEntity {
     private User productProducer;
 
     @ManyToOne
-    @JoinColumn(name = "warehouses_id", nullable = true)
+    @JoinColumn(name = "warehouse_id", nullable = true)
     private WarehouseEntity warehouses;
 
 }

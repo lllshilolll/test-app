@@ -1,5 +1,6 @@
 package org.example.spring.warehouse.controllers;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.example.api.UserApi;
 import org.example.api.model.CreateUserProductsRequest;
@@ -19,12 +20,15 @@ public class UserRestController implements UserApi {
 
     private final DataService dataService;
 
+
+    @Timed("createUserProducts")
     @PreAuthorize("hasAuthority('admin')")
     @Override
     public ResponseEntity<String> createUserProducts(CreateUserProductsRequest createUserProductsRequest) {
         return ResponseEntity.ok(dataService.createUserProducts(createUserProductsRequest));
     }
 
+    @Timed("getUserProducts")
     @PreAuthorize("hasAnyAuthority('user', 'admin')")
     @Override
     public ResponseEntity<List<Product>> getUserProducts() {

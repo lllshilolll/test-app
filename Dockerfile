@@ -3,6 +3,7 @@ FROM maven:3.9.4-eclipse-temurin-17 as build
 COPY warehouse-api warehouse-api/
 COPY warehouse-app warehouse-app/
 COPY zoo zoo/
+COPY test-cloud test-cloud/
 
 COPY pom.xml .
 
