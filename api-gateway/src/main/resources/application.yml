@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: warehouse-app-route
+          uri: http://test_app:8080
+          predicates:
+            - Path=/**
+server:
+  port: 8083

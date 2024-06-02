@@ -1,4 +1,4 @@
-dospring:
+spring:
   application:
     name: warehouse-app
 #  profiles:
